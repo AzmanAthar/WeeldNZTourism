@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTP Verification</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@300;500&display=swap');
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #151d2a;
+      font-family: 'Poppins', sans-serif;
+      color: antiquewhite;
+    }
+
+    #verification-container {
+      background-color: antiquewhite;
+      color: black;
+      border: #151d2a 2px solid;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="verification-container">
+    <h2>OTP Verification</h2>
+    <form id="verification-form">
+      <div class="form-group">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Verify</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("verification-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var expectedOTP = urlParams.get("otp");
+      var enteredOTP = document.getElementById("otp").value;
+
+      // Check if entered OTP is correct
+      if (enteredOTP === expectedOTP) {
+        redirectToWelcome();
+      } else {
+        alert("Invalid OTP. Please try again.");
+      }
+    });
+
+    // Function to redirect to welcome.html
+    function redirectToWelcome() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var username = urlParams.get("username");
+
+      // Redirect to welcome.html with username as a parameter
+      window.location.href = "dashboard.html?username=" + username;
+    }
+  </script>
+</body>
+</html>

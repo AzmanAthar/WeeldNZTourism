@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Tourist Spots</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Poppins:wght@300;500&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #151d2a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .spot {
+            border: 1px solid #ddd;
+            background-color: coral;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            display: block;
+        }
+        .spot img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 2px #151d2a solid;
+        }
+        /* Popup Styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        .popup {
+            background-color: coral;
+            color: brown;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 80%;
+            text-align: center;
+            position: relative;
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="usernameWelcome"></h1>
+    <br>
+    <h2>New Zealand Tourist Spots</h2>
+
+    <!-- Spot 1 -->
+    <div class="spot" onclick="showPopup('Spot 1 Name', 'Description of Spot 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.')">
+        <img src="img/pexels-bence-kondor-2259917.jpg" alt="Spot 1">
+        <h2>Spot 1 Name</h2>
+    </div>
+    <br>
+    <!-- Spot 2 -->
+    <div class="spot" onclick="showPopup('Spot 2 Name', 'Description of Spot 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.')">
+        <img src="img/pexels-gabriel-peter-710263.jpg" alt="Spot 2">
+        <h2>Spot 2 Name</h2>
+    </div>
+    <br>
+    <!-- Add more spots here -->
+    <div class="spot" onclick="showPopup('Spot 3 Name', 'Description of Spot 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.')">
+        <img src="img/pexels-tyler-lastovich-1022479.jpg" alt="Spot 3">
+        <h2>Spot 2 Name</h2>
+    </div>
+    <br>
+    <div class="spot" onclick="showPopup('Spot 4 Name', 'Description of Spot 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.')">
+        <img src="img/pexels-tyler-lastovich-572689.jpg" alt="Spot 4">
+        <h2>Spot 2 Name</h2>
+    </div>
+    <br>
+
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay">
+        <div class="popup" id="popup">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-description"></p>
+            <a href="https://www.newzealand.com/" target="_blank">More Information</a>
+        </div>
+    </div>
+
+    <script>
+        let urlParams = new URLSearchParams(window.location.search)
+        let username = urlParams.get('username')
+
+        let usernameWelcome = document.querySelector('#usernameWelcome')
+        usernameWelcome.textContent = `Hello ${username}`
+
+        function showPopup(title, description) {
+            const overlay = document.getElementById("overlay");
+            const popup = document.getElementById("popup");
+            const popupTitle = document.getElementById("popup-title");
+            const popupDescription = document.getElementById("popup-description");
+
+            overlay.style.display = "block";
+            popup.style.display = "block";
+            popupTitle.textContent = title;
+            popupDescription.textContent = description;
+        }
+
+        function closePopup() {
+            const overlay = document.getElementById("overlay");
+            const popup = document.getElementById("popup");
+
+            overlay.style.display = "none";
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</html>
